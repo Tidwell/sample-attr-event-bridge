@@ -1,4 +1,4 @@
- <fieldset>
+<fieldset>
  	<legend>Input / Core-Input / Paper-Input / ng-value</legend>
 	<input ng-model="var1" placeholder="Type...">
 	<br />
@@ -20,6 +20,29 @@
 	<br />
 	{{var1}}
 </fieldset>
+<fieldset>
+ 	<legend>Deep-Nested Data Structures - Input / Core-Input / Paper-Input / ng-value</legend>
+	<input ng-model="myobj.someprop.anotherprop.var1" placeholder="Type...">
+	<br />
+	<core-input
+		placeholder="Type..."
+		validate="{{letterValidator}}"
+		error="Only enter letters"
+		angupoly="{value:'myobj.someprop.anotherprop.var1'}">
+	</core-input>
+	<br />
+	<paper-input
+		floatingLabel
+		label="Type"
+		multiline="true"
+		validate="^[a-zA-Z]+$"
+		error="Only enter letters"
+		angupoly="{value:'myobj.someprop.anotherprop.var1'}">
+	</paper-input>
+	<br />
+	{{myobj.someprop.anotherprop.var1}}
+</fieldset>
+
 
 <hr />
 <fieldset>
@@ -35,25 +58,3 @@
 	{{var2}}
 </fieldset>
 <hr />
-<fieldset>
- 	<legend>Deep-Nested Data Struct - Input / Core-Input / Paper-Input / ng-value</legend>
-	<input ng-model="myobj.someprop.anotherprop.var1" placeholder="Type...">
-	<br />
-	<core-input
-		placeholder="Type..."
-		validate="{{letterValidator}}"
-		error="Only enter letters"
-		angupoly="{value:'myobj.someprop.anotherprop.var1'}">
-	</core-input>
-	<br />
-	<!-- <paper-input
-		floatingLabel
-		label="Type"
-		multiline="true"
-		validate="^[a-zA-Z]+$"
-		error="Only enter letters"
-		angupoly="{value:'myobj.someprop.anotherprop.var1'}">
-	</paper-input> -->
-	<br />
-	{{myobj.someprop.anotherprop.var1}}
-</fieldset>
