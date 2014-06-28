@@ -1,0 +1,36 @@
+ <fieldset>
+ 	<legend>Input / Core-Input / Paper-Input / ng-value</legend>
+	<input ng-model="var1" placeholder="Type...">
+	<br />
+	<core-input
+		placeholder="Type..."
+		validate="{{letterValidator}}"
+		error="Only enter letters"
+		angupoly="{value:'var1'}">
+	</core-input>
+	<br />
+	<paper-input
+		floatingLabel
+		label="Type"
+		multiline="true"
+		validate="^[a-zA-Z]+$"
+		error="Only enter letters"
+		angupoly="{value:'var1'}">
+	</paper-input>
+	<br />
+	{{var1}}
+</fieldset>
+
+<hr />
+<fieldset>
+ 	<legend>Checkbox / Paper-Radio-Button / Paper-Checkbox / ng-value</legend>
+	<input type="checkbox" ng-model="var2" />
+	<br />
+	<br />
+	<paper-radio-button toggles="true" angupoly="{checked: 'var2'}"></paper-radio-button>
+	<br />
+	<br />
+	<paper-checkbox angupoly="{checked: 'var2'}"></paper-checkbox>
+	<br />
+	{{var2}}
+</fieldset>
