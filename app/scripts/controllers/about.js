@@ -11,4 +11,12 @@ angular.module('polytstApp')
   .controller('AboutCtrl', function ($scope) {
   	$scope.var1 = 'avalue';
   	$scope.var2 = false;
+
+  	$scope.myobj = {
+  		someprop: {
+  			anotherprop: {
+  				var1: 'another value'
+  			}
+  		}
+  	};
   });
