@@ -9,4 +9,19 @@ example bridging polymer components to angular scope vars via an attribute and e
  * angular generator
  * polymer generator
 
-grunt serve on local
+setup
+-----
+npm install
+bower install
+
+dev
+------
+grunt serve
+
+build
+-----
+grunt build
+
+prod
+----
+serve statically
