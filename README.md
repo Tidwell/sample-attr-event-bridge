@@ -1,7 +1,7 @@
 sample-attr-event-bridge
 ========================
 
-example bridging poly->angular with attr and event binding directive
+example bridging polymer components to angular scope vars via an attribute and event binding directive
 
  * node
  * npm
