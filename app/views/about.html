@@ -122,7 +122,7 @@
       <button ng-click="selectorTwo.indexOf(rem) > -1 ? selectorTwo.splice(selectorTwo.indexOf(rem),1) : ''">remove</button>
       <br />
       
-      <h2>list</h2>
+      <!-- <h2>list</h2>
       <core-selector target="{{target}}" selected="0"></core-selector>
       <ul id="list">
         <li>Item 0</li>
@@ -130,7 +130,7 @@
         <li>Item 2</li>
         <li>Item 3</li>
         <li>Item 4</li>
-      </ul>
+      </ul> -->
       <!--
       <h2>binding of a group of radio buttons to a variable</h2>
       <core-selector target="{{$.myForm}}" itemsSelector="input[type=radio]" 
@@ -143,4 +143,35 @@
         <p>color = {{color}}</p>
       </form>
   -->
+</fieldset>
+<hr />
+<fieldset>
+	<legend>Paper Radio Group</legend>
+	<section>
+  
+	    <h4>Keep Wi-Fi on during sleep</h4>
+	    
+	    <paper-radio-group angupoly="{selected: 'radioSelector'}">
+	      <paper-radio-button label="Always"></paper-radio-button>
+	      <paper-radio-button label="Only when plugged in"></paper-radio-button>
+	      <paper-radio-button label="Never"></paper-radio-button>
+	    </paper-radio-group>
+	    
+	  </section>
+	  <br />
+	  <input type="number" ng-model="radioSelector" /><br />
+	  <br>
+	  
+	  <section>
+	  
+	    <h4>Wi-Fi frequency band</h4>
+	    
+	    <paper-radio-group class="blue" angupoly="{selected: 'radioSelectorTwo'}">
+	      <paper-radio-button label="Auto"></paper-radio-button>
+	      <paper-radio-button label="5 GHz only"></paper-radio-button>
+	      <paper-radio-button label="2.4 GHz only"></paper-radio-button>
+	    </paper-radio-group>
+	    <br />
+	    <input type="number" ng-model="radioSelectorTwo" /><br />
+	  </section>
 </fieldset>

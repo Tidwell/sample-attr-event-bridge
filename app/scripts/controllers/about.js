@@ -36,4 +36,7 @@ angular.module('polytstApp')
 
   	$scope.selectorOne = 0;
   	$scope.selectorTwo = [];
+
+  	$scope.radioSelector = 0;
+  	$scope.radioSelectorTwo = 2;
   });
