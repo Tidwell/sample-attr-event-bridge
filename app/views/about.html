@@ -20,6 +20,7 @@
 	<br />
 	{{var1}}
 </fieldset>
+<hr />
 <fieldset>
  	<legend>Deep-Nested Data Structures - Input / Core-Input / Paper-Input / ng-value</legend>
 	<input ng-model="myobj.someprop.anotherprop.var1" placeholder="Type...">
@@ -58,3 +59,88 @@
 	{{var2}}
 </fieldset>
 <hr />
+<fieldset>
+ 	<legend>Deep-Nested Data Structures - Checkbox / Paper-Radio-Button / Paper-Checkbox / ng-value</legend>
+	<input type="checkbox" ng-model="myobj.someprop.anotherprop.bool" />
+	<br />
+	<br />
+	<paper-radio-button toggles="true" angupoly="{checked: 'myobj.someprop.anotherprop.bool'}"></paper-radio-button>
+	<br />
+	<br />
+	<paper-checkbox angupoly="{checked: 'myobj.someprop.anotherprop.bool'}"></paper-checkbox>
+	<br />
+	{{myobj.someprop.anotherprop.bool}}
+</fieldset>
+<hr />
+<fieldset>
+ 	<legend> Core Collapse</legend>
+	<button ng-click="opened = !opened">toggle collapse</button>
+	<core-collapse angupoly="{opened: 'opened', duration: 'duration', fixedSize: 'fixedSize', horizontal: 'horizontal'}">
+		collapse content<br />collapse content<br />collapse content<br />collapse content<br />collapse content<br />
+	</core-collapse>
+	<br />
+	<br />
+	fixedSize: <paper-radio-button toggles="true" angupoly="{checked: 'fixedSize'}"></paper-radio-button>
+	<br />
+	horizontal: <select ng-selected="horizontal">
+		<option value="true">true</option>
+		<option value="false">false</option>
+	</select>
+	<br />
+	Duration: <input type="text" ng-model="duration" /> (seconds) <br />
+	Openend: {{opened}}<br />
+</fieldset>
+<br />
+<fieldset>
+	<legend>Core Selector</legend>
+	<h2>basic</h2>
+      <core-selector class="list" angupoly="{selected: 'selectorOne'}">
+        <div ng-repeat="item in selectorOneItemList">{{item}}</div>
+      </core-selector>
+      <input type="number" ng-model="selectorOne" /><br />
+      Add or remove new items to the list using angular, the poly element updates:
+      <br/>
+      <button ng-click="selectorOneItemList.push(selectorOneItemList.length)">Add another</button>
+      <button ng-click="selectorOneItemList.splice(selectorOneItemList.length-1,1)">remove last</button>
+      <br />
+      
+      <h2>multi-selection</h2>
+      <core-selector class="list" angupoly="{selected: 'selectorTwo'}" multi>
+        <div>Item 0</div>
+        <div>Item 1</div>
+        <div>Item 2</div>
+        <div>Item 3</div>
+        <div>Item 4</div>
+      </core-selector>
+      <br />
+      {{selectorTwo}}
+      <br />
+      <input type="number" ng-model="add" />
+      <button ng-click="selectorTwo.push(add)">add</button>
+      <br />
+      <input type="number" ng-model="rem" />
+      <button ng-click="selectorTwo.indexOf(rem) > -1 ? selectorTwo.splice(selectorTwo.indexOf(rem),1) : ''">remove</button>
+      <br />
+      
+      <h2>list</h2>
+      <core-selector target="{{target}}" selected="0"></core-selector>
+      <ul id="list">
+        <li>Item 0</li>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+        <li>Item 4</li>
+      </ul>
+      <!--
+      <h2>binding of a group of radio buttons to a variable</h2>
+      <core-selector target="{{$.myForm}}" itemsSelector="input[type=radio]" 
+          selected="{{color}}" valueattr="value" selectedProperty="checked" 
+          activateEvent="change"></core-selector>
+      <form id="myForm">
+        <label><input type="radio" name="color" value="red"> Red</label> <br>
+        <label><input type="radio" name="color" value="green"> Green</label> <br>
+        <label><input type="radio" name="color" value="blue"> Blue</label> <br>
+        <p>color = {{color}}</p>
+      </form>
+  -->
+</fieldset>

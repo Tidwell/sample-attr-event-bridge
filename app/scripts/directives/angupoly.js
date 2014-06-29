@@ -6,6 +6,11 @@ angular.module('angupoly', [])
       priority: 42,
       restrict: 'A',
       compile: function(tElement, tAttr) {
+
+        function needsBind(attr) {
+          if (attr === 'value' || attr === 'selected') { return true; }
+          return false;
+        }
         //evaluate what scope attributes we want to bind to and create a hash of elementAttribute : scopeProperty
         var conf = $rootScope.$eval(tAttr.angupoly);
         //for caching the assignment functions for the scope properties
@@ -24,7 +29,7 @@ angular.module('angupoly', [])
             assignables[attrName] = parse.assign; //cache it
           }
           //if there is an assignment function and we aren't looking for a value attribute
-          if (parse.assign && attrName !== 'value') {
+          if (parse.assign && !needsBind(attrName)) {
             needsMutationObserver = true; //we need to use a mutation observer for the attribute changes
           }
           //cache the assignment object for the attribute
@@ -36,10 +41,10 @@ angular.module('angupoly', [])
           var el = element[0];
 
           // from angular scope to attribute
-          // http://www.polymer-project.org/platform/node_bind.html
+          // http://www.polymer-project.org/docs/polymer/node_bind.html
           for (var attrName in paths) {
             //dont use a path observer on value, it will collide with the watch binding
-            if (attrName !== 'value') {
+            if (!needsBind(attrName)) {
               el.bind(attrName, new PathObserver(scope, paths[attrName]));
             }
           }
@@ -76,7 +81,7 @@ angular.module('angupoly', [])
                 while ((mutation = mutations[i++])) {
                   //check only the properties we need
                   for (var attrName in assignables) { //dont do value, we have change events for that
-                    if (mutation.attributeName === attrName && attrName !== 'value') {
+                    if (mutation.attributeName === attrName && !needsBind(attrName)) {
                       //set the angular scope value
                       assignables[attrName](scope, mutation.target[attrName]);
                       //flag that we will need to $apply
@@ -105,6 +110,17 @@ angular.module('angupoly', [])
               //watch the angular scope value so we can update the element's inputValue attribute
               scope.$watch(paths.value, function() {
                 element[0].inputValue = scope.$eval(paths.value);
+              });
+            }
+
+            if (paths.selected) {
+              element[0].addEventListener('core-select', function(e) {
+                assignables.selected(scope, element[0].selected);
+                scope.$apply();
+              });
+              //watch the angular scope selected so we can update the element's selected attribute
+              scope.$watch(paths.selected, function() {
+                element[0].selected = scope.$eval(paths.selected);
               });
             }
           });
